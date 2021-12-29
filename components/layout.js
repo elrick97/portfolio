@@ -3,18 +3,72 @@ import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
+import { useState } from 'react'
+import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { RainbowHighlight } from "./RainbowHighlight";
+import styled from '@emotion/styled'
 
-const name = '[Your Name]'
-export const siteTitle = 'Next.js Sample Website'
+const name = 'Ricardo Ramirez'
+export const siteTitle = 'Ricardo Portfolio'
+
+const ToggleButton = styled.button`
+  margin-left: auto; 
+  margin-right: 0;
+  --toggle-width: 80px;
+  --toggle-height: 38px;
+  --toggle-padding: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  line-height: 1;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  padding: var(--toggle-padding);
+  border: 0;
+  border-radius: calc(var(--toggle-width) / 2);
+  cursor: pointer;
+  background: var(#1E90FF);
+  transition: background 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  &:focus {
+    outline-offset: 5px;
+  }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+  &:hover {
+    box-shadow: 0 0 5px 2px var(--color-bg-toggle);
+  },
+`;
+
+const ToggleThumb = styled.span`
+  position: absolute;
+  top: var(--toggle-padding);
+  left: var(--toggle-padding);
+  width: calc(var(--toggle-height) - (var(--toggle-padding) * 1.1));
+  height: calc(var(--toggle-height) - (var(--toggle-padding) * 1.1));
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.25s ease-in-out;
+  transform: ${(p) =>
+    p.activeTheme === "dark"
+      ? "translate3d(calc(var(--toggle-width) - var(--toggle-height)), 0, 0)"
+      : "none"};
+`;
 
 export default function Layout({ children, home }) {
+  const {theme, setTheme} = useTheme('dark');
+  const {mounted, setMounted} = useState() 
+
   return (
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="Portfolio"
         />
         <meta
           property="og:image"
@@ -28,6 +82,15 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
+           <ToggleButton
+              type="button"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              
+            >
+              <ToggleThumb activeTheme={theme} />
+              <span>🌙</span>
+              <span>☀️</span>
+            </ToggleButton>
             <Image
               priority
               src="/images/profile.jpg"
@@ -36,10 +99,19 @@ export default function Layout({ children, home }) {
               width={144}
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className={utilStyles.heading2Xl}><RoughNotation type="underline" show={true} color='#F59E0B' strokeWidth='10px' padding='0px' animationDuration='2000'>{name} </RoughNotation></h1>
           </>
         ) : (
           <>
+          <ToggleButton
+              type="button"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              
+            >
+              <ToggleThumb activeTheme={theme} />
+              <span>🌙</span>
+              <span>☀️</span>
+            </ToggleButton>
             <Link href="/">
               <a>
                 <Image
