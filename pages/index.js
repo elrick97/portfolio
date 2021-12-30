@@ -10,6 +10,8 @@ import {SiDevdotto} from 'react-icons/si'
 import {TiDocumentText} from 'react-icons/ti'
 
 export default function Home({ allPostsData }) {
+  const blogPosts = allPostsData.filter(post => post.type === 'blog')
+  const projectPosts = allPostsData.filter(post => post.type === 'project')
   return (
     <Layout home>
       <Head>
@@ -21,7 +23,7 @@ export default function Home({ allPostsData }) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {blogPosts.map(({ id, date, title, type }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
@@ -36,7 +38,19 @@ export default function Home({ allPostsData }) {
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Projects</h2>
-        <p>WIP</p>
+          <ul className={utilStyles.list}>
+            {projectPosts.map(({ id, date, title }) => (
+              <li className={utilStyles.listItem} key={id}>
+                <Link href={`/posts/${id}`}>
+                  <a>{title}</a>
+                </Link>
+                <br />
+                <small className={utilStyles.lightText}>
+                  <Date dateString={date} />
+                </small>
+              </li>
+            ))}
+          </ul>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Experience</h2>
@@ -58,7 +72,7 @@ export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
   return {
     props: {
-      allPostsData
+      allPostsData,
     }
   }
 }
