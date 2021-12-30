@@ -3,6 +3,7 @@ import { getAllPostIds, getPostData } from '../../lib/posts'
 import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
+import { RoughNotation } from 'react-rough-notation'
 
 export default function Post({ postData }) {
   return (
@@ -11,7 +12,7 @@ export default function Post({ postData }) {
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <h1 className={utilStyles.headingXl}><RoughNotation type="circle" show={true} color='#F59E0B' animationDuration='2000'>{postData.title}</RoughNotation></h1>
         <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
