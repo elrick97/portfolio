@@ -19,6 +19,7 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
           <p><RoughNotation type="highlight" show={true} color='#F59E0B' strokeWidth='5px' animationDuration='2000' animationDelay='1000'>Software Engineer</RoughNotation> - Class 2021</p>
+          <p>Hello I am a newly graduated Software Engineer from Monterrey, Mexico. I love to learn new technology and create small projects.</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
