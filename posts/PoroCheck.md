@@ -13,7 +13,7 @@ The !whois command takes in two arguments, the region following the summoner nam
 
 ```Example: !whois na Doublelift```
 
-![alt text](/images/poro-test.png)
+![alt text](/images/poro-test.PNG)
 
 ### Invite
 To invite PoroCheck to your discord server paste this link in your browser:
