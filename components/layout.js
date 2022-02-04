@@ -65,11 +65,17 @@ export default function Layout({ children, home }) {
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon2.ico" />
         <meta
           name="description"
-          content="Portfolio"
+          content="Ricardo Ramirez's portfolio"
         />
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:site" content="@elrickrmz"/>
+        <meta name="twitter:creator" content="@elrickrmz"/>
+        <meta name="twitter:title" content="Discord Bot with Python"/>
+        <meta name="twitter:description" content="By the end of this first part, you will have the fundamentals on how to make the bot respond to commands given by the user and have it live on your Discord server."/>
+        <meta name="twitter:image" content="https://ricardoramirez.vercel.app/images/discordBotP1/Untitled%203.png"/>
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
@@ -77,7 +83,7 @@ export default function Layout({ children, home }) {
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
         <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
+        
       </Head>
       <header className={styles.header}>
         {home ? (
@@ -91,14 +97,6 @@ export default function Layout({ children, home }) {
               <span>🌙</span>
               <span>☀️</span>
             </ToggleButton>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt={name}
-            />
             <h1 className={utilStyles.heading2Xl}><RoughNotation type="underline" show={true} color='#F59E0B' strokeWidth='10px' padding='0px' animationDuration='2000'>{name} </RoughNotation></h1>
           </>
         ) : (
@@ -112,18 +110,7 @@ export default function Layout({ children, home }) {
               <span>🌙</span>
               <span>☀️</span>
             </ToggleButton>
-            <Link href="/">
-              <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
-                  className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
-            </Link>
+            
             <h2 className={utilStyles.headingLg}>
               <Link href="/">
                 <a className={utilStyles.colorInherit}>{name}</a>

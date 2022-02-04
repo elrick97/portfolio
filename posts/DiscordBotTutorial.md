@@ -1,14 +1,14 @@
 ---
-title: "Writing a Discord Bot Part 1: The Bot"
-date: "2021-12-29"
+title: "Python Discord Bot Tutorial Part 1"
+date: "2022-02-04"
 type: "blog"
 ---
 
-# Writing a Discord Bot Part 1: The Bot
+# Python Discord Bot Tutorial
 
 ## Introduction
 
-This will be a two-part beginner's tutorial on how to set up, code, and deploy your first discord bot to your audience. By the end of this first part, you will have the fundamentals on how to make the bot respond to commands given by the user and have it live on your Discord server. In part 2 we are going to dive a little deeper into more advanced features delivering beautifully-formatted responses and adding a small API to add value to your bot.
+This will be a two-part beginner's tutorial on how to set up, code, and deploy your first discord bot to your audience. By the end of this first part, you will have the fundamentals on how to make the bot respond to commands given by the user and have it live on your Discord server. In part 2, we are going to dive a little deeper into more advanced features delivering beautifully-formatted responses and adding a small API to add value to your bot.
 
 ## Tech stack and Prerequisites
 
@@ -16,7 +16,7 @@ This will be a two-part beginner's tutorial on how to set up, code, and deploy y
 - [discord.py](https://discordpy.readthedocs.io/en/stable/): will be our API wrapper for discord.
 - pip3: to install Python dependencies.
 
-To verify you have both Python3 and pip3 run the following commands:
+To verify you have both Python3 and pip3, run the following commands:
 
 ```bash
 python --version
@@ -62,7 +62,7 @@ Now that we have our app, we want to add a new bot. Navigate to the *bot* tab on
 
 ![Untitled](/images/discordBotP1/Untitled%202.png)
 
-Once we have our bot we want to copy the token. It is very important to always keep the token to yourself since it is your access to your bot and its functionality.
+Once we have our bot, we want to copy the token. It is very important to always keep the token to yourself since it is your access to your bot and its functionality.
 
 ![Untitled](/images/discordBotP1/Untitled%203.png)
 
@@ -80,7 +80,7 @@ If you have any trouble cloning the repository follow this [tutorial](https://do
 
 ![Untitled](/images/discordBotP1/Untitled%204.png)
 
-On the project directory run the following command on your terminal to install the dependencies (in this case only discord.py).
+On the project directory, run the following command on your terminal to install the dependencies (in this case only discord.py).
 
 ```bash
 pip install -r requirements.txt
@@ -101,22 +101,27 @@ Open the folder on your favorite code editor. You will see seven files in the na
 We will go through each point explaining it in detail.
 
 1. The first point is just to import the libraries discord.py and datetime.
-2. Here we are setting the command prefix to be the character **!** (exclamation point), you can set any command prefix you want, any time you want to call a bot command you will have to use it as a prefix. For example the command !time. We are also creating our client instance, which represents the class to interact with the Discord WebSocket API.
-3. You want to paste here the bot token you previously copy from your app dashboard in the Discord developer portal. 
+2. Here we are setting the command prefix to be the character **!** (exclamation point), you can set any command prefix you want, any time you want to call a bot command you will have to use it as a prefix. 
+    
+    For example the command !time. 
+    
+    We are also creating our client instance, which represents the class to interact with the Discord WebSocket API.
+    
+3. You want to paste here the bot token you previously copied from your app dashboard in the Discord developer portal. 
 4. On the library we are using we can interact with events that happen on our server. Some examples are:
-    1. on_ready: this function is called when the bot is ready is up and ready.
+    1. on_ready: this function is called when the bot is ready.
     2. on_member_join: this function is called when a user joins the server.
     3. on_typing: called when someone begins typing a message.
     
-    And many more for now we are going to use only the on_ready, but feel free to play around with the others. You can find all methods in the [official documentation](https://discordpy.readthedocs.io/en/stable/api.html?highlight=event#discord.on_member_join).
+    And many more, for now we are going to use only the on_ready, but feel free to play around with the others. You can find all methods in the [official documentation](https://discordpy.readthedocs.io/en/stable/api.html?highlight=event#event-reference).
     
-5. Not only you can use event and utility methods provided by the API but you can create your own custom commands. Let’s dive and decompose our function for a better understanding.
+5. Not only you can use event and utility methods provided by the API, but you can create your own custom commands. Let’s dive and decompose our function for a better understanding.
     1. First we tell our client that the following function will be a command.
-    2. We define our **time** function passing **ctx** (context) as the only argument. Context represents the context in which the command is being invoked, comes with a lot of metadata for example author, channel, guild, valid, etc. For further reference check out this [link](https://discordpy.readthedocs.io/en/stable/api.html?highlight=event#discord.on_member_join).
+    2. We define our **time** function passing **ctx** (context) as the only argument. Context represents the context in which the command is being invoked, comes with a lot of metadata, for example author, channel, guild, valid, etc. For further reference check out this [link](https://discordpy.readthedocs.io/en/stable/ext/commands/api.html?highlight=context#discord.ext.commands.Context).
     3. Then we just get the current time with help from the datetime library and return the message in the same context with the **send** method.
 6. Finally, we call the **run** method with our **token** to start the bot. It is important to have this method at the end of your code since anything below it will not be executed. 
 
-Before we can test our bot, we need to add it to a server. To do this go back to your app dashboard in your Discord developer portal. 
+Before we can test our bot, we need to add it to a server. To do this, go back to your app dashboard in your Discord developer portal. 
 
 1. Navigate to URL Generator from OAuth2 menu on the sidebar.
 2. Select **Bot** on scopes.
@@ -125,15 +130,15 @@ Before we can test our bot, we need to add it to a server. To do this go back to
 
 ![Untitled](/images/discordBotP1/Untitled%206.png)
 
-Open the link in a new tab and add the bot to the server you want to test. You have to be the owner of the server to add it, so you might as well want to create a test server.
+Open the link in a new tab and add the bot to the server you want to test. You have to be the owner of the server to add it, you might as well want to create a test server.
 
 ![Untitled](/images/discordBotP1/Untitled%207.png)
 
-After adding the bot, it should appear on your server offline:
+After adding the bot, it should appear offline on your server:
 
 ![Screen Shot 2022-01-28 at 14.47.57.png](/images/discordBotP1/Screen_Shot_2022-01-28_at_14.47.57.png)
 
-To bring him to life run the following command on your working directory:
+To bring him to life, run the following command on your working directory:
 
 ```bash
 python bot.py
@@ -141,7 +146,7 @@ or
 python3 bot.py
 ```
 
-If you got this message the bot is ready and online on your server!
+If you got this message, the bot is ready and online on your server!
 
 ![Screen Shot 2022-01-28 at 14.49.56.png](/images/discordBotP1/Screen_Shot_2022-01-28_at_14.49.56.png)
 
