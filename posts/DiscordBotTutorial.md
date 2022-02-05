@@ -155,3 +155,5 @@ Now go test it on your server, type the command **!time** and your bot should an
 ![Screen Shot 2022-01-28 at 15.01.56.png](/images/discordBotP1/Screen_Shot_2022-01-28_at_15.01.56.png)
 
 Here we conclude this first part of our tutorial. In the second part, we will dive further into commands by adding arguments, implementing an API, delivering embedded messages, and deploying your bot.
+
+If you run into any trouble feel free to DM me on [Twitter](https://twitter.com/elrickrmz) and follow me for updates on part two and more content.
